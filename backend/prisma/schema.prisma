@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Statement {
+  id        Int         @id @default(autoincrement())
+  text      String
+  createdAt DateTime    @default(now())
+  parent_id Int?
+  parent    Statement?  @relation("ChildStatements", fields: [parent_id], references: [id])
+  children  Statement[] @relation("ChildStatements")
+}
