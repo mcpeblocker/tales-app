@@ -2,15 +2,17 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "light": "#EDE3E4",
+        "dark": "#231F20",
+        "primary": "#39A0ED",
+        "secondary": "#357266",
+        "danger": "#EF626C"
       },
     },
   },

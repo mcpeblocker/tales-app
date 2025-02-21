@@ -9,6 +9,16 @@ router.get('/', async (_, res) => {
     res.status(200).json({ data: statements });
 });
 
+router.get('/recommended', async (_, res) => {
+    const statements = await db.statement.findMany({
+        take: 5,
+        orderBy: {
+            createdAt: Prisma.SortOrder.desc
+        }
+    });
+    res.status(200).json({ data: statements });
+});
+
 router.get('/:id', async (req, res) => {
     const statementId = parseInt(req.params.id);
     const statement = await db.statement.findFirst({

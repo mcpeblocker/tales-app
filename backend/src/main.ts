@@ -4,6 +4,13 @@ import { routes } from './routes';
 import process from 'node:process';
 import { db } from './core/db';
 import express from 'express';
+import cors from 'cors';
+
+server.use(cors({
+    origin: ['http://localhost:3000', 'https://tales.mcpeblocker.uz'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 server.get('/ping', (_, res) => {
     res.status(200).send('pong');
