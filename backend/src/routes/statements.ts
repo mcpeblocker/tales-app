@@ -4,10 +4,10 @@ import { Prisma } from '@prisma/client';
 
 const router = express.Router();
 
-router.get('/', async (_, res) => {
-    const statements = await db.statement.findMany();
-    res.status(200).json({ data: statements });
-});
+// router.get('/', async (_, res) => {
+//     const statements = await db.statement.findMany();
+//     res.status(200).json({ data: statements });
+// });
 
 router.get('/recommended', async (_, res) => {
     const statements = await db.statement.findMany({
