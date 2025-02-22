@@ -24,7 +24,7 @@ export default function RecommendedTales() {
       <h2 className="text-3xl text-center">
         Or continue an unfinished tale...
       </h2>
-      <div className="w-full flex justify-center gap-4">
+      <div className="w-full flex justify-center gap-4 flex-wrap">
         {statements.map((statement, index) => (
           <div
             className="p-4 rounded-md bg-secondary cursor-pointer hover:opacity-80 hover:scale-110 transition-all duration-300"

@@ -30,7 +30,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {/* Header */}
       <div className="h-48 flex flex-col justify-center">
         <span className="text-center text-3xl font-semibold">Bored?</span>
