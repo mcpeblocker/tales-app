@@ -29,7 +29,7 @@ export default function Statement(props: StatementProps) {
       onClick={goToStatement}
       className="cursor-pointer hover:opacity-60 hover:scale-105 transition-all duration-500"
     >
-      <h3 className="text-3xl font-bold text-primary">{statement.text}</h3>
+      <h3 className="text-3xl font-bold text-primary text-center">{statement.text}</h3>
     </div>
   );
 }

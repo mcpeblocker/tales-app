@@ -60,9 +60,9 @@ export default function TaleById(props: PageProps) {
       <Link href="/" className="text-primary p-4">
         Start new tale
       </Link>
-      <div className="flex-grow flex flex-col justify-center items-center gap-8">
+      <div className="flex-grow flex flex-col justify-center items-center gap-8 px-4 py-8">
         {parentId && <Statement id={parentId} />}
-        <h1 className="text-5xl font-bold">{statement.text}</h1>
+        <h1 className="text-5xl font-bold text-center">{statement.text}</h1>
         <form
           className="w-full flex flex-col justify-center items-center gap-2"
           onSubmit={handleSubmit}
@@ -80,7 +80,7 @@ export default function TaleById(props: PageProps) {
           >
             Publish continuation
           </button>
-          <div className="w-1/2 flex justify-center">
+          <div className="w-full sm:w-2/3 lg:w-1/2 flex justify-center">
             {children.length > 0 && (
               <ChildrenStatements statements={children} />
             )}
