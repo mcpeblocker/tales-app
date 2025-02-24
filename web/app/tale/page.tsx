@@ -8,14 +8,7 @@ import Swipable from "@/components/Swipable";
 import TextInput from "@/components/TextInput";
 import { getFontSizeByLength } from "@/utils/text.utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  FormEvent,
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { Direction } from "@/enums/Direction.enum";
 import Link from "next/link";
 import IndexIndicator from "@/components/IndexIndicator";
@@ -148,52 +141,50 @@ export default function FullscreenStatement() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="w-full h-screen flex flex-col justify-center items-center py-2 px-4">
-        <Swipable
-          onDown={handlePrev}
-          onUp={handleNext}
-          onLeft={handleNextSibling}
-          onRight={handlePrevSibling}
-          canSwipe={canSwipe}
-        >
-          <div className="flex-1 flex flex-col items-center gap-8 px-4 py-8">
-            <Link href="/" className="text-primary p-4">
-              Start new tale
-            </Link>
-            <IndexIndicator
-              index={currentIndex ?? 0}
-              total={siblingStatements.length}
-            />
-            <div className="flex-grow flex justify-center items-center">
-              <h3
-                className="flex-grow  font-bold text-center text-wrap"
-                style={{ fontSize }}
-              >
-                {statement?.text ?? ""}
-              </h3>
-            </div>
-            <form
-              className="w-full flex flex-col justify-center items-center gap-2"
-              onSubmit={handleSubmit}
+    <div className="w-full h-screen flex flex-col justify-center items-center py-2 px-4">
+      <Swipable
+        onDown={handlePrev}
+        onUp={handleNext}
+        onLeft={handleNextSibling}
+        onRight={handlePrevSibling}
+        canSwipe={canSwipe}
+      >
+        <div className="flex-1 flex flex-col items-center gap-8 px-4 py-8">
+          <Link href="/" className="text-primary p-4">
+            Start new tale
+          </Link>
+          <IndexIndicator
+            index={currentIndex ?? 0}
+            total={siblingStatements.length}
+          />
+          <div className="flex-grow flex justify-center items-center">
+            <h3
+              className="flex-grow  font-bold text-center text-wrap"
+              style={{ fontSize }}
             >
-              <TextInput
-                placeholder="Continue from here..."
-                value={text}
-                onChange={handleInputChange}
-              />
-              <button
-                type="submit"
-                className={`bg-primary text-light py-2 px-8 rounded mt-2 transition-all duration-500 ${
-                  isValid ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                Publish continuation
-              </button>
-            </form>
+              {statement?.text ?? ""}
+            </h3>
           </div>
-        </Swipable>
-      </div>
-    </Suspense>
+          <form
+            className="w-full flex flex-col justify-center items-center gap-2"
+            onSubmit={handleSubmit}
+          >
+            <TextInput
+              placeholder="Continue from here..."
+              value={text}
+              onChange={handleInputChange}
+            />
+            <button
+              type="submit"
+              className={`bg-primary text-light py-2 px-8 rounded mt-2 transition-all duration-500 ${
+                isValid ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              Publish continuation
+            </button>
+          </form>
+        </div>
+      </Swipable>
+    </div>
   );
 }
