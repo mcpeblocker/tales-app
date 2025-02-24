@@ -14,7 +14,8 @@ export default function RecommendedTales() {
   }, []);
 
   const goToStatement = (id: number) => {
-    router.push(`/tale/${id}`);
+    router.push("/tale?id=" + id);
+    // router.push(`/tale/${id}`);
   };
 
   if (statements.length <= 0) return null;
