@@ -1,7 +1,7 @@
 "use client";
 import {
   createStatement,
-  getChildrenStatementById,
+  getChildrenStatementsById,
   getStatementById,
 } from "@/api/statements";
 import ChildrenStatements from "@/components/ChildrenStatements";
@@ -30,7 +30,7 @@ export default function TaleById(props: PageProps) {
     getStatementById(id)
       .then(setStatement)
       .catch(() => router.push("/"));
-    getChildrenStatementById(id)
+    getChildrenStatementsById(id)
       .then(setChildren)
       .catch(() => router.push("/"));
   }, [id, router]);

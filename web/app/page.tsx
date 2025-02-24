@@ -23,7 +23,8 @@ export default function HomePage() {
       const newStatement = await createStatement(text);
       if (!newStatement) throw new Error();
       setText("");
-      router.push(`/tale/${newStatement.id}`);
+      router.push("/tale?id=" + newStatement.id);
+      // router.push(`/tale/${newStatement.id}`);
     } catch {
       alert("Failed to publish tale");
     }
