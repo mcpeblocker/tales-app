@@ -27,12 +27,21 @@ export const getStatementById = async (id: number): Promise<api.Statement> => {
     }
 }
 
-export const getChildrenStatementById = async (id: number): Promise<api.Statement[]> => {
+export const getChildrenStatementsById = async (id: number): Promise<api.Statement[]> => {
     const response = await client.get(`/statements/${id}/children`);
     if (response.status === 200) {
         return response.data.data;
     } else {
-        throw new Error("Failed to get children statement");
+        throw new Error("Failed to get children statements");
+    }
+}
+
+export const getSiblingsStatementsById = async (id: number): Promise<api.Statement[]> => {
+    const response = await client.get(`/statements/${id}/siblings`);
+    if (response.status === 200) {
+        return response.data.data;
+    } else {
+        throw new Error("Failed to get sibling statements");
     }
 }
 

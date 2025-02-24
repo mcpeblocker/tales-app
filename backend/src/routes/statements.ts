@@ -1,6 +1,6 @@
 import express from 'express';
 import { db } from '../core/db';
-import { Prisma } from '@prisma/client';
+import { Prisma, Statement } from '@prisma/client';
 
 const router = express.Router();
 
@@ -35,13 +35,33 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/children', async (req, res) => {
     const statementId = parseInt(req.params.id);
-    const statement = await db.statement.findMany({
+    const statements = await db.statement.findMany({
         where: {
             parent_id: statementId
         }
     });
-    res.status(200).json({ data: statement });
+    res.status(200).json({ data: statements });
 });
+
+router.get('/:id/siblings', async (req, res) => {
+    const statementId = parseInt(req.params.id);
+    const statement = await db.statement.findFirst({
+        where: { id: statementId }
+    });
+    if (!statement) {
+        res.status(404).json({ message: 'Statement not found' });
+        return;
+    }
+    let siblings: Statement[] = [statement];
+    if (statement.parent_id) {
+        siblings = await db.statement.findMany({
+            where: {
+                parent_id: statement?.parent_id
+            }
+        })
+    }
+    res.status(200).json({ data: siblings });
+})
 
 router.post('/', async (req, res) => {
     const { text, parentId } = req.body;
