@@ -1,0 +1,33 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy to Remote Server
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          APP_DIR: ${{ secrets.APP_DIR }}
+        run: |
+          sshpass -p $SERVER_PASSWORD ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
+            cd $APP_DIR &&
+            git pull &&
+            docker compose down &&
+            docker compose up -d --build &&
+            docker system prune -f
+          "
