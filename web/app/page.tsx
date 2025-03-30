@@ -35,7 +35,7 @@ export default function HomePage() {
       {/* Header */}
       <div className="h-48 flex flex-col justify-center">
         <span className="text-center text-3xl font-semibold">Bored?</span>
-        <h1 className="text-center text-5xl font-bold">Write your own tale!</h1>
+        <h1 className="text-center text-5xl font-bold">Make your own tale!</h1>
       </div>
       {/* Tale initiator input */}
       <form
