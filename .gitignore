@@ -1,0 +1,5 @@
+# PostgreSQL data directory binded to docker container
+/data
+
+# Secrets used for docker containers
+/secrets
