@@ -9,6 +9,18 @@ const router = express.Router();
 //     res.status(200).json({ data: statements });
 // });
 
+router.get('/root', async (_, res) => {
+    const statements = await db.statement.findMany({
+        where: {
+            parent_id: null
+        },
+        orderBy: {
+            createdAt: Prisma.SortOrder.desc
+        }
+    });
+    res.status(200).json({ data: statements });
+});
+
 router.get('/recommended', async (_, res) => {
     const statements = await db.statement.findMany({
         take: 5,

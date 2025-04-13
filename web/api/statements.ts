@@ -53,3 +53,12 @@ export const getRecommendedStatements = async (): Promise<api.Statement[]> => {
         throw new Error("Failed to get recommended statements");
     }
 }
+
+export const getRootStatements = async (): Promise<api.Statement[]> => {
+    const response = await client.get("/statements/root");
+    if (response.status === 200) {
+        return response.data.data;
+    } else {
+        throw new Error("Failed to get root statements");
+    }
+}

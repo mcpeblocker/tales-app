@@ -1,6 +1,7 @@
 "use client";
 import { createStatement } from "@/api/statements";
 import RecommendedTales from "@/components/RecommendedTales";
+import RootTales from "@/components/RootTales";
 import TextInput from "@/components/TextInput";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -56,8 +57,12 @@ export default function HomePage() {
           Publish
         </button>
       </form>
-      {/* Recommended tales to continue */}
-      <RecommendedTales />
+      <div className="flex flex-col justify-center items-center gap-8 mb-16">
+        {/* Recommended tales to continue */}
+        <RecommendedTales />
+        {/* Root tales */}
+        <RootTales />
+      </div>
       {/* Footer */}
       <div className="fixed bottom-0 bg-primary w-full text-center py-1">
         <span>
